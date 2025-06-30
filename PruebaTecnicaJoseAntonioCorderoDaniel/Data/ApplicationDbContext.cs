@@ -21,6 +21,10 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Data
 
             modelBuilder.Entity<ProfesorRelacionDTO>().HasNoKey().ToView(null);
             modelBuilder.Entity<AlumnoRelacionDTO>().HasNoKey().ToView(null);
+            modelBuilder.Entity<AlumnoConEscuelaDTO>().HasNoKey();
+            modelBuilder.Entity<EscuelaAlumnoDTO>().HasNoKey();
+            modelBuilder.Entity<EscuelaConAlumnosDTO>().HasNoKey();
+            modelBuilder.Entity<AlumnoSimpleDTO>().HasNoKey();
         }
 
     }

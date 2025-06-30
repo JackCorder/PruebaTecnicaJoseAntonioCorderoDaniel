@@ -83,6 +83,58 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Services.Implements
             }
         }
 
+        public async Task<List<AlumnoConEscuelaDTO>> ObtenerAlumnosInscritosPorProfesorAsync(int profesorId)
+        {
+            try
+            {
+                var param = new SqlParameter("@ProfesorID", profesorId);
+
+                var resultado = await _context.Set<AlumnoConEscuelaDTO>()
+                    .FromSqlRaw("EXEC ObtenerAlumnosInscritosPorProfesor @ProfesorID", param)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                return resultado;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Error al obtener alumnos inscritos por profesor: {ex.Message}", ex);
+            }
+        }
+
+        public async Task<List<EscuelaConAlumnosDTO>> ObtenerEscuelasYAlumnosDeProfesorAsync(int profesorId)
+        {
+            try
+            {
+                var param = new SqlParameter("@ProfesorID", profesorId);
+
+                var flatData = await _context.Set<EscuelaAlumnoDTO>()
+                    .FromSqlRaw("EXEC ObtenerEscuelasYAlumnosDeProfesor @ProfesorID", param)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                var resultado = flatData
+                    .GroupBy(e => e.NombreEscuela)
+                    .Select(g => new EscuelaConAlumnosDTO
+                    {
+                        NombreEscuela = g.Key,
+                        Alumnos = g.Select(a => new AlumnoSimpleDTO
+                        {
+                            AlumnoID = a.AlumnoID,
+                            Nombre = a.NombreAlumno,
+                            Apellido = a.ApellidoAlumno,
+                            NumeroIdentificacion = a.NumeroIdentificacion
+                        }).ToList()
+                    }).ToList();
+
+                return resultado;
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception($"Error al obtener escuelas y alumnos del profesor: {ex.Message}", ex);
+            }
+        }
+
 
     }
 }
