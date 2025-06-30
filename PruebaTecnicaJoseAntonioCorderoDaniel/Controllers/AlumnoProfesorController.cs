@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PruebaTecnicaJoseAntonioCorderoDaniel.Services.Interfaces;
 using PruebaTecnicaJoseAntonioCorderoDaniel.DTOs;
+using PruebaTecnicaJoseAntonioCorderoDaniel.Services.Implements;
 
 namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
 {
@@ -68,6 +69,41 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
             catch (Exception ex)
             {
                 return BadRequest(new { mensaje = ex.Message });
+            }
+        }
+
+
+
+        [HttpGet("alumnos-inscritos-por-profesor/{profesorId}")]
+        public async Task<ActionResult<List<AlumnoConEscuelaDTO>>> ObtenerAlumnosInscritosPorProfesor(int profesorId)
+        {
+            try
+            {
+                var resultado = await _service.ObtenerAlumnosInscritosPorProfesorAsync(profesorId);
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = ex.Message });
+            }
+        }
+
+
+        [HttpGet("escuelas-alumnos-profesor/{profesorId}")]
+        public async Task<ActionResult<List<EscuelaConAlumnosDTO>>> ObtenerEscuelasYAlumnosDeProfesor(int profesorId)
+        {
+            try
+            {
+                var resultado = await _service.ObtenerEscuelasYAlumnosDeProfesorAsync(profesorId);
+
+                if (resultado == null || !resultado.Any())
+                    return NotFound($"No se encontraron alumnos asignados para el profesor con ID {profesorId}.");
+
+                return Ok(resultado);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { mensaje = $"Error al obtener los datos: {ex.Message}" });
             }
         }
 
