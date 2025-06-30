@@ -8,6 +8,7 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Data
         public ApplicationDbContext(DbContextOptions options) : base(options) {}
 
         public DbSet<Escuela> Escuelas { get; set; }
+        public DbSet<Profesor> Profesores { get; set; }
 
     }
 }
