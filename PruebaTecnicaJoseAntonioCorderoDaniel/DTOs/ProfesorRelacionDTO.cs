@@ -1,11 +1,10 @@
 ﻿namespace PruebaTecnicaJoseAntonioCorderoDaniel.DTOs
 {
-    public class AlumnoDTO
+    public class ProfesorRelacionDTO
     {
-        public int AlumnoID { get; set; }
+        public int ProfesorID { get; set; }
         public string Nombre { get; set; }
         public string Apellido { get; set; }
-        public DateTime? FechaNacimiento { get; set; }
         public string NumeroIdentificacion { get; set; }
     }
 }

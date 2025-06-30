@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
 {
     [ApiController]
-    [Route("api/v1/Alumnos")]
+    [Route("api/v1/alumnos")]
     public class AlumnosController : ControllerBase
     {
         

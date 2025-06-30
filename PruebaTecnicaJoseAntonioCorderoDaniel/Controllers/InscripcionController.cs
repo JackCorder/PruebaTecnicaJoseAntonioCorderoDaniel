@@ -8,7 +8,7 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/inscripciones")]
     public class InscripcionesController : ControllerBase
     {
     }

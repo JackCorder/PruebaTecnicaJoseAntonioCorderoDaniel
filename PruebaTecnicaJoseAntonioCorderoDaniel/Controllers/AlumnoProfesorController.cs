@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PruebaTecnicaJoseAntonioCorderoDaniel.DTOs;
 using PruebaTecnicaJoseAntonioCorderoDaniel.Services.Interfaces;
+using PruebaTecnicaJoseAntonioCorderoDaniel.DTOs;
 
 namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
 {
     [ApiController]
-    [Route("api/v1/profesores")]
-    public class ProfesoresController : ControllerBase
+    [Route("api/v1/alumnos-profesor")]
+    public class AlumnoProfesorController : ControllerBase
     {
+        
     }
 }
