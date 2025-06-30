@@ -5,7 +5,7 @@ using PruebaTecnicaJoseAntonioCorderoDaniel.Services.Interfaces;
 namespace PruebaTecnicaJoseAntonioCorderoDaniel.Controllers
 {
     [ApiController]
-    [Route("api/v1/Escuelas")]
+    [Route("api/v1/escuelas")]
     public class EscuelasController : ControllerBase
     {
         private readonly IEscuelaService _escuelaService;
