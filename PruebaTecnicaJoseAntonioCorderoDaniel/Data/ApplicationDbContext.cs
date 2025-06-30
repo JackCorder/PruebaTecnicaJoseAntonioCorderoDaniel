@@ -9,6 +9,7 @@ namespace PruebaTecnicaJoseAntonioCorderoDaniel.Data
 
         public DbSet<Escuela> Escuelas { get; set; }
         public DbSet<Profesor> Profesores { get; set; }
+        public DbSet<Alumno> Alumnos { get; set; }
 
     }
 }
